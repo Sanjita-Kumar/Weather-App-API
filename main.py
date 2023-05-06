@@ -31,7 +31,6 @@ if response.status_code == 200:
 
     current_date = ''
 
-    # Iterates through the array of dictionaries named list in json_data
     for item in json_data['list']:
         time = item['dt_txt']
         next_date, hour = time.split(' ')
@@ -43,10 +42,10 @@ if response.status_code == 200:
             print('-----------------------------------')
             print('\n{m}/{d}/{y}'.format(**date))
 
-            # Grabs the first 2 integers from our HH:MM:SS string to get the hours
+       
         hour = int(hour[:2])
 
-        # Sets the AM (ante meridiem) or PM (post meridiem) period
+
         if hour < 12:
             if hour == 0:
                 hour = 12
@@ -65,7 +64,7 @@ if response.status_code == 200:
                 meridiem = 'Noon'
 
         print('\n-- %i:00 %s' % (hour, meridiem))
-        # Temperature is measured in Kelvin
+
         temperature = item['main']['temp']
         humidity = str(item['main']['humidity'])
         pressure = str(item['main']['pressure'])
@@ -73,7 +72,7 @@ if response.status_code == 200:
         # Weather condition
         description = item['weather'][0]['description'],
 
-        # Prints the description as well as the temperature in Celcius and Farenheit
+
         print('Farenheit:   %.2f' % (temperature * 9 / 5 - 459.67))
         print('Celcius:     {:.2f}'.format(temperature - 273.15))
         print('Humidity:    ' + humidity)
